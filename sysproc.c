@@ -89,14 +89,35 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+// int 
+// sys_memsize(void) // memsize system call 
+// {
+//   struct proc* m_proc;
+
+//   m_proc = myproc();
+
+//   return m_proc->sz;
+// }
+
+// int 
+// sys_trace(void) // trace system call 
+// {
+//   if (argint(0, &myproc()->tracemask) < 0) return 1;
+
+//   return 0;
+// }
+
+/* homework 3 for scheduler (use weightset system call) */
+
 int
 sys_weightset(void)
 {
   int weight;
-  if(argint(0, &weight)<0 || weight==0)
+
+  if(argint(0, &weight) < 0 || weight == 0) // exception for weight variable return -1
   {
     return -1;
   }
-  do_weightset(weight);
+  do_weightset(weight); // else for exception execute do_weightset(weight)
   return 1;
 }

@@ -103,7 +103,7 @@ extern int sys_unlink(void);
 extern int sys_wait(void);
 extern int sys_write(void);
 extern int sys_uptime(void);
-extern int sys_weightset(void);
+extern int sys_weightset(void); /* homework 3 for scheduler (use weightset system call) */
 
 
 static int (*syscalls[])(void) = {
@@ -128,9 +128,9 @@ static int (*syscalls[])(void) = {
 [SYS_link]    sys_link,
 [SYS_mkdir]   sys_mkdir,
 [SYS_close]   sys_close,
-[SYS_weightset] sys_weightset,
+[SYS_weightset] sys_weightset, /* homework 3 for scheduler (use weightset system call) */
 }; 
-/* system call name for trace systemcall */
+/* system call name for weightset systemcall */
 char *syscallnames[] = {
 [SYS_fork]    "fork",
 [SYS_exit]    "exit",
@@ -153,7 +153,7 @@ char *syscallnames[] = {
 [SYS_link]    "link",
 [SYS_mkdir]   "mkdir",
 [SYS_close]   "close",
-[SYS_weightset]  "weightset",
+[SYS_weightset]  "weightset", /* homework 3 for scheduler (use weightset system call)  */
 };
 
 void
@@ -170,4 +170,7 @@ syscall(void)
             curproc->pid, curproc->name, num);
     curproc->tf->eax = -1;
   }
+  // if((curproc->tracemask >> num) %2 == 1){ //if((curproc->tracemask >> num & 0x1))
+  //     cprintf("syscall traced: pid = %d, syscall = %s, %d returned\n",curproc->pid, syscallnames[num], curproc->tf->eax);
+  //   } // for trace system call and display trace result
 }
