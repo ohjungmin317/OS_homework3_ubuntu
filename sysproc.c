@@ -107,7 +107,7 @@ sys_uptime(void)
 //   return 0;
 // }
 
-/* homework 3 for scheduler (use weightset system call) */
+/* homework 3 for scheduler (use weightset system call) - 20180775 */
 
 int
 sys_weightset(void)

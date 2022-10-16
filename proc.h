@@ -49,8 +49,8 @@ struct proc {
   struct file *ofile[NOFILE];  // Open files
   struct inode *cwd;           // Current directory
   char name[16];               // Process name (debugging)
-  long long priority;          // homework 3 for scheduler use the proc.c struct proc variable
-  int weight;                  // homework 3 for scheduler use the proc.c struct proc variable 
+  long long priority;          // homework 3 for scheduler use the proc.c struct proc variable - 20180775
+  int weight;                  // homework 3 for scheduler use the proc.c struct proc variable - 20180775
 };
 
 // Process memory is laid out contiguously, low addresses first:

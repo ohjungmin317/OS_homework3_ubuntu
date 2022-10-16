@@ -91,7 +91,7 @@ CFLAGS += -fno-pie -nopie
 endif
 
 ifeq ($(debug),1)
-CFLAGS += -DDEBUG # fix the homework3 and use the make command debug = 1 
+CFLAGS += -DDEBUG # fix the homework3 and use the make command debug = 1 - 20180775
 endif
 
 xv6.img: bootblock kernel
@@ -222,7 +222,7 @@ QEMUGDB = $(shell if $(QEMU) -help | grep -q '^-gdb'; \
 	then echo "-gdb tcp::$(GDBPORT)"; \
 	else echo "-s -p $(GDBPORT)"; fi)
 ifndef CPUS
-CPUS := 1 # fix the homework 3 for assume the cpu core 1 
+CPUS := 1 # fix the homework 3 for assume the cpu core 1 - 20180775
 endif
 QEMUOPTS = -drive file=fs.img,index=1,media=disk,format=raw -drive file=xv6.img,index=0,media=disk,format=raw -smp $(CPUS) -m 512 $(QEMUEXTRA)
 

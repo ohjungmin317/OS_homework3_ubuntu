@@ -35,11 +35,11 @@ void sdebug_func(void){
                 
                 print_counter--;
 
-                if(print_counter == 0)
+                if(print_counter == 0) // if print_count -> PRINT_CYCLE == 0 
                 {
-                    if(first){
+                    if(first){ // PRINT_CYCLE == 0 -> first == 1  and print the info
                         end = uptime();
-                        int total_time = (end - start) * 10;
+                        int total_time = (end - start) * 10; // calculate for process time 
                         printf(1,"PID: %d, WEIGHT: %d",getpid(),weight);
                         printf(1,"TIMES: %d ms\n",total_time);
                         first = 0;

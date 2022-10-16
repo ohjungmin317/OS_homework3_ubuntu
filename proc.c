@@ -7,7 +7,7 @@
 #include "proc.h"
 #include "spinlock.h"
 
-/* fix the homework 3 for scheduler */
+/* fix the homework 3 for scheduler - 20180775 */
 #define TIME_SLICE 10000000 // define value for TIME_SLICE 
 #define NULL ((void *)0)
 int weight = 1; // global variable for weight 
@@ -15,7 +15,7 @@ int weight = 1; // global variable for weight
 struct {
   struct spinlock lock;
   struct proc proc[NPROC];
-  /* fix the homework 3 for scheduler */
+  /* fix the homework 3 for scheduler - 20180775 */
   long long min_priority; // define for variable for ptable struct (use for scheduler min_priority)
 } ptable;
 
@@ -30,7 +30,7 @@ static void wakeup1(void *chan);
 /* ssu_schedule when scheduler that gives a high weight so that newly created 
    processes are not excluded from the process execution flow */
 
-/* fix the homework 3 for scheduler */
+/* fix the homework 3 for scheduler - 20180775 */
 struct proc *ssu_schedule()
 {
   struct proc *p;
@@ -48,6 +48,7 @@ struct proc *ssu_schedule()
       }
     }
   }
+  /* fix the homework 3 for scheduler - 20180775 */
 
   /* proc.c file define the debugging */
   #ifdef DEBUG
@@ -59,7 +60,7 @@ struct proc *ssu_schedule()
 
 /* The priority value is updated according to the following rules whenever the schedule() is called */
 
-/* fix the homework 3 for scheduler */
+/* fix the homework 3 for scheduler - 20180775 */
 void update_priority(struct proc *proc)
 {
    proc->priority = proc->priority + (TIME_SLICE/proc->weight); // new_priority = old_priority + (time_slice / weight)
@@ -67,7 +68,7 @@ void update_priority(struct proc *proc)
 
 /* The min_priority value is updated according to the following rules whenever the schedule() is called */
 
-/* fix the homework 3 for scheduler */
+/* fix the homework 3 for scheduler - 20180775 */
 void update_min_priority()
 {
   struct proc *min = NULL;
@@ -87,7 +88,7 @@ void update_min_priority()
 
 /* Assign min_priority function */
 
-/* fix the homework 3 for scheduler */
+/* fix the homework 3 for scheduler - 20180775 */
 void assign_min_priority(struct proc *proc)
 {
   proc->priority = ptable.min_priority;
@@ -159,14 +160,14 @@ allocproc(void)
   return 0;
 
 found:
-/* fix the homework 3 for scheduler */
+/* fix the homework 3 for scheduler - 20180775 */
 
   p->weight = weight; // weight values are increasing 1 order from according to the process creation order 
   weight++; // weight value order from increase 1 
   p->state = EMBRYO;
   p->pid = nextpid++;
 
-/* fix the homework 3 for scheduler */
+/* fix the homework 3 for scheduler - 20180775 */
   assign_min_priority(p); 
 
   release(&ptable.lock);
@@ -203,7 +204,7 @@ userinit(void)
   struct proc *p;
   extern char _binary_initcode_start[], _binary_initcode_size[];
 
-  ptable.min_priority = 3; /* fix the homework 3 for scheduler */
+  ptable.min_priority = 3; /* fix the homework 3 for scheduler - 20180775 */
 
   p = allocproc();
   
@@ -417,7 +418,7 @@ scheduler(void)
     // Loop over process table looking for process to run.
     acquire(&ptable.lock);
       
-      /* fix the homework 3 for scheduler */
+      /* fix the homework 3 for scheduler - 20180775 */
         p = ssu_schedule(); // when scheduler function execute ssu_scheduler process execute (cf. scheduler that gives weight)
         if(p == NULL) {
                 release(&ptable.lock);
@@ -438,7 +439,7 @@ scheduler(void)
       swtch(&(c->scheduler), p->context);
       switchkvm();
 
-      /* fix the homework 3 for scheduler */
+      /* fix the homework 3 for scheduler - 20180775 */
 
       /* first of all when scheduler execute update_priority and explore the process of min_priority 
       and then update min_prioity */
@@ -554,8 +555,7 @@ sleep(void *chan, struct spinlock *lk)
 // Wake up all processes sleeping on chan.
 // The ptable lock must be held.
 
-/* fix the homework 3 for scheduler */
-
+/* fix the homework 3 for scheduler - 20180775 */
 /* If the priority value is assigned from 0 when wake up a process, the process can be exclusively executed
   so the smallest value among the priority values of the managed process is given */
 static void
@@ -565,7 +565,7 @@ wakeup1(void *chan)
 
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
     if(p->state == SLEEPING && p->chan == chan){
-      p->state = RUNNABLE; // SLEEPING state -> RUNNABLE state assign min_priority 
+      p->state = RUNNABLE; // SLEEPING state -> RUNNABLE state assign min_priority /* fix the homework 3 for scheduler - 20180775 */ 
       assign_min_priority(p); 
       }
     }
@@ -640,7 +640,7 @@ procdump(void)
   }
 }
 
-/* fix the homework 3 for scheduler */
+/* fix the homework 3 for scheduler - 20180775 */
 
 /* Ptable variables that require access in various process use the concept of mutual exclusion */
 void do_weightset(int weight)

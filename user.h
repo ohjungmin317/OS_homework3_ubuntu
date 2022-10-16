@@ -23,7 +23,7 @@ int getpid(void);
 char* sbrk(int);
 int sleep(int);
 int uptime(void);
-int weightset(int); /* homework 3 for scheduler (use weightset system call) */
+int weightset(int); /* homework 3 for scheduler (use weightset system call) - 20180775 */
 
 // ulib.c
 int stat(const char*, struct stat*);

@@ -120,7 +120,7 @@ void            userinit(void);
 int             wait(void);
 void            wakeup(void*);
 void            yield(void);
-void            do_weightset(int); /*define the do_weightset for sdebug.c*/
+void            do_weightset(int); /*define the do_weightset for sdebug.c*/ /* fix the homework 3 for scheduler - 20180775 */
 
 // swtch.S
 void            swtch(struct context**, struct context*);

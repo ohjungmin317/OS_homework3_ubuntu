@@ -103,7 +103,7 @@ extern int sys_unlink(void);
 extern int sys_wait(void);
 extern int sys_write(void);
 extern int sys_uptime(void);
-extern int sys_weightset(void); /* homework 3 for scheduler (use weightset system call) */
+extern int sys_weightset(void); /* homework 3 for scheduler (use weightset system call) - 20180775 */
 
 
 static int (*syscalls[])(void) = {
@@ -128,7 +128,7 @@ static int (*syscalls[])(void) = {
 [SYS_link]    sys_link,
 [SYS_mkdir]   sys_mkdir,
 [SYS_close]   sys_close,
-[SYS_weightset] sys_weightset, /* homework 3 for scheduler (use weightset system call) */
+[SYS_weightset] sys_weightset, /* homework 3 for scheduler (use weightset system call) - 20180775 */
 }; 
 /* system call name for weightset systemcall */
 char *syscallnames[] = {
@@ -153,7 +153,7 @@ char *syscallnames[] = {
 [SYS_link]    "link",
 [SYS_mkdir]   "mkdir",
 [SYS_close]   "close",
-[SYS_weightset]  "weightset", /* homework 3 for scheduler (use weightset system call)  */
+[SYS_weightset]  "weightset", /* homework 3 for scheduler (use weightset system call) - 20180775 */
 };
 
 void
